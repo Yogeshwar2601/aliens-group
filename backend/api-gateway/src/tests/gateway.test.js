@@ -129,20 +129,22 @@ test("gateway health reports all downstream services", async () => {
     });
 });
 
-test("allows browser requests from the production website", async () => {
-    const response = await fetch(`${gatewayUrl}/api/projects/categories`, {
-        method: "OPTIONS",
-        headers: {
-            Origin: "https://aliensgroup.in",
-            "Access-Control-Request-Method": "GET",
-        },
-    });
+test("allows browser requests from the production and Vercel websites", async () => {
+    for (const origin of [
+        "https://aliensgroup.in",
+        "https://aliens-groups-juayqv4nv-yogeshwars-projects-79f9a555.vercel.app",
+    ]) {
+        const response = await fetch(`${gatewayUrl}/api/projects/categories`, {
+            method: "OPTIONS",
+            headers: {
+                Origin: origin,
+                "Access-Control-Request-Method": "GET",
+            },
+        });
 
-    assert.equal(response.status, 204);
-    assert.equal(
-        response.headers.get("access-control-allow-origin"),
-        "https://aliensgroup.in"
-    );
+        assert.equal(response.status, 204);
+        assert.equal(response.headers.get("access-control-allow-origin"), origin);
+    }
 });
 
 test("returns a JSON 404 for routes not handled by the gateway", async () => {

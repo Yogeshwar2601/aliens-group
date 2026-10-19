@@ -36,6 +36,7 @@ const app = express();
 const allowedOrigins = [
     process.env.FRONTEND_URL || "http://localhost:3000",
     "https://aliensgroup.in",
+    "https://aliens-groups-juayqv4nv-yogeshwars-projects-79f9a555.vercel.app",
 ];
 
 app.disable("x-powered-by");
