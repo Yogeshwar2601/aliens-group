@@ -150,6 +150,18 @@ test("allows browser requests from local and deployed websites", async () => {
     }
 });
 
+test("handles forwarded requests from the Render proxy", async () => {
+    const response = await fetch(`${gatewayUrl}/api/health`, {
+        headers: {
+            "X-Forwarded-For": "203.0.113.10",
+        },
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.equal(body.gateway, "healthy");
+});
+
 test("returns a JSON 404 for routes not handled by the gateway", async () => {
     const response = await fetch(`${gatewayUrl}/api/not-a-service`);
     const body = await response.json();

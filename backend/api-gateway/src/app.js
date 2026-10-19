@@ -33,6 +33,8 @@ const serviceRoutes = [
 ];
 
 const app = express();
+app.set("trust proxy", 1);
+
 const allowedOrigins = [
     process.env.FRONTEND_URL || "http://localhost:3000",
     "http://localhost:3000",
