@@ -57,7 +57,9 @@ The root `render.yaml` Blueprint creates the four public API services and
 attaches the `aliens-group-backend` environment group. In Render, create a
 Blueprint from this repository's `main` branch and apply the configuration.
 The APIs use Render's Free plan; each service has a public URL and may spin down
-when idle.
+when idle. The frontend retries temporary server errors for safe read requests
+to allow time for a sleeping service to wake up, but free instances are not
+always-on; use an always-on plan if uninterrupted availability is required.
 
 After the four services are live, set `HOST=0.0.0.0` and their deployed URLs in
 the existing API gateway service:
