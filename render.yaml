@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: aliens-group-project-service
+    runtime: docker
+    plan: free
+    region: oregon
+    rootDir: backend/project-service
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - fromGroup: aliens-group-backend
+      - key: SERVICE_HOST
+        value: 0.0.0.0
+
+  - type: web
+    name: aliens-group-blog-service
+    runtime: docker
+    plan: free
+    region: oregon
+    rootDir: backend/blog-service
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - fromGroup: aliens-group-backend
+      - key: SERVICE_HOST
+        value: 0.0.0.0
+
+  - type: web
+    name: aliens-group-construction-service
+    runtime: docker
+    plan: free
+    region: oregon
+    rootDir: backend/construction-service
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - fromGroup: aliens-group-backend
+      - key: SERVICE_HOST
+        value: 0.0.0.0
+
+  - type: web
+    name: aliens-group-lead-service
+    runtime: docker
+    plan: free
+    region: oregon
+    rootDir: backend/lead-service
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - fromGroup: aliens-group-backend
+      - key: SERVICE_HOST
+        value: 0.0.0.0

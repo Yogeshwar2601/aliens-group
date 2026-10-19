@@ -51,6 +51,29 @@ Deploy `api-gateway/` separately and configure `PROJECTS_SERVICE_URL`,
 the deployed service addresses. Run `database-migrations/` once before
 connecting the services to a new database.
 
+## Render deployment
+
+The root `render.yaml` Blueprint creates the four public API services and
+attaches the `aliens-group-backend` environment group. In Render, create a
+Blueprint from this repository's `main` branch and apply the configuration.
+The APIs use Render's Free plan; each service has a public URL and may spin down
+when idle.
+
+After the four services are live, set `HOST=0.0.0.0` and their deployed URLs in
+the existing API gateway service:
+
+| Variable | Value |
+| --- | --- |
+| `PROJECTS_SERVICE_URL` | Project service URL |
+| `BLOGS_SERVICE_URL` | Blog service URL |
+| `CONSTRUCTION_SERVICE_URL` | Construction service URL |
+| `LEADS_SERVICE_URL` | Lead service URL |
+
+The existing gateway must use the same `FRONTEND_URL` as the deployed website.
+Set `NEXT_PUBLIC_API_URL` in the frontend deployment to the gateway URL.
+Confirm the production database already has the application's schema; otherwise
+run `database-migrations/` once against that database before opening the APIs.
+
 ## Run the full stack with Docker Compose
 
 Create `backend/.env` from `.env.example`, configure `DATABASE_URL`, AWS
