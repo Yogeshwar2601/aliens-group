@@ -33,12 +33,16 @@ const serviceRoutes = [
 ];
 
 const app = express();
+const allowedOrigins = [
+    process.env.FRONTEND_URL || "http://localhost:3000",
+    "https://aliensgroup.in",
+];
 
 app.disable("x-powered-by");
 app.use(helmet());
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL || "http://localhost:3000",
+        origin: allowedOrigins,
     })
 );
 app.use(morgan("dev"));

@@ -129,6 +129,22 @@ test("gateway health reports all downstream services", async () => {
     });
 });
 
+test("allows browser requests from the production website", async () => {
+    const response = await fetch(`${gatewayUrl}/api/projects/categories`, {
+        method: "OPTIONS",
+        headers: {
+            Origin: "https://aliensgroup.in",
+            "Access-Control-Request-Method": "GET",
+        },
+    });
+
+    assert.equal(response.status, 204);
+    assert.equal(
+        response.headers.get("access-control-allow-origin"),
+        "https://aliensgroup.in"
+    );
+});
+
 test("returns a JSON 404 for routes not handled by the gateway", async () => {
     const response = await fetch(`${gatewayUrl}/api/not-a-service`);
     const body = await response.json();

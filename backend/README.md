@@ -69,8 +69,12 @@ the existing API gateway service:
 | `CONSTRUCTION_SERVICE_URL` | Construction service URL |
 | `LEADS_SERVICE_URL` | Lead service URL |
 
-The existing gateway must use the same `FRONTEND_URL` as the deployed website.
-Set `NEXT_PUBLIC_API_URL` in the frontend deployment to the gateway URL.
+Set the gateway's `FRONTEND_URL` to the deployed website (`https://aliensgroup.in`).
+The gateway also allows this production origin when `FRONTEND_URL` is still set
+to the local development URL.
+The frontend defaults to `https://aliens-group.onrender.com` in production;
+set `NEXT_PUBLIC_API_URL` in the frontend deployment only if using a different
+gateway URL. Keep the local development gateway at `http://localhost:5000`.
 Confirm the production database already has the application's schema; otherwise
 run `database-migrations/` once against that database before opening the APIs.
 
