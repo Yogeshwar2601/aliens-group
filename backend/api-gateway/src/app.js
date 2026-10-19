@@ -35,7 +35,10 @@ const serviceRoutes = [
 const app = express();
 const allowedOrigins = [
     process.env.FRONTEND_URL || "http://localhost:3000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
     "https://aliensgroup.in",
+    "https://aliens-groups-266snkt6a-yogeshwars-projects-79f9a555.vercel.app",
     "https://aliens-groups-juayqv4nv-yogeshwars-projects-79f9a555.vercel.app",
 ];
 
@@ -98,7 +101,7 @@ app.get("/api/health", async (req, res) => {
             try {
                 const response = await fetch(
                     `${target.replace(/\/+$/, "")}/health`,
-                    { signal: AbortSignal.timeout(1500) }
+                    { signal: AbortSignal.timeout(30_000) }
                 );
                 return [name, response.ok ? "healthy" : "unhealthy"];
             } catch {

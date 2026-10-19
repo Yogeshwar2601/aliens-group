@@ -70,8 +70,8 @@ the existing API gateway service:
 | `LEADS_SERVICE_URL` | Lead service URL |
 
 Set the gateway's `FRONTEND_URL` to the primary deployed website. The gateway
-also allows `https://aliensgroup.in` and the configured Vercel deployment URL
-when `FRONTEND_URL` is still set to the local development URL.
+also allows the local development origins, `https://aliensgroup.in`, and the
+known Vercel deployment URLs if `FRONTEND_URL` is set to a different origin.
 The frontend defaults to `https://aliens-group.onrender.com` in production;
 set `NEXT_PUBLIC_API_URL` in the frontend deployment only if using a different
 gateway URL. Keep the local development gateway at `http://localhost:5000`.

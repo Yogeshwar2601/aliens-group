@@ -129,9 +129,12 @@ test("gateway health reports all downstream services", async () => {
     });
 });
 
-test("allows browser requests from the production and Vercel websites", async () => {
+test("allows browser requests from local and deployed websites", async () => {
     for (const origin of [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
         "https://aliensgroup.in",
+        "https://aliens-groups-266snkt6a-yogeshwars-projects-79f9a555.vercel.app",
         "https://aliens-groups-juayqv4nv-yogeshwars-projects-79f9a555.vercel.app",
     ]) {
         const response = await fetch(`${gatewayUrl}/api/projects/categories`, {
