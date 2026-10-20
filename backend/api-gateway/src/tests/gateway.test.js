@@ -136,6 +136,7 @@ test("allows browser requests from local and deployed websites", async () => {
         "https://aliensgroup.in",
         "https://aliens-groups-266snkt6a-yogeshwars-projects-79f9a555.vercel.app",
         "https://aliens-groups-juayqv4nv-yogeshwars-projects-79f9a555.vercel.app",
+        "https://aliens-groups-omhozlqdm-yogeshwars-projects-79f9a555.vercel.app",
     ]) {
         const response = await fetch(`${gatewayUrl}/api/projects/categories`, {
             method: "OPTIONS",

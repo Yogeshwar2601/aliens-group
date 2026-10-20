@@ -42,6 +42,7 @@ const allowedOrigins = [
     "https://aliensgroup.in",
     "https://aliens-groups-266snkt6a-yogeshwars-projects-79f9a555.vercel.app",
     "https://aliens-groups-juayqv4nv-yogeshwars-projects-79f9a555.vercel.app",
+    "https://aliens-groups-omhozlqdm-yogeshwars-projects-79f9a555.vercel.app",
 ];
 
 app.disable("x-powered-by");
